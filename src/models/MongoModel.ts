@@ -1,4 +1,4 @@
-import { isValidObjectId, Model } from 'mongoose';
+import { isValidObjectId, Model, UpdateQuery } from 'mongoose';
 import { ErrorTypes } from '../errors/catalog';
 import { IModel } from '../interfaces/IModel';
 
@@ -24,8 +24,8 @@ abstract class MongoModel<T> implements IModel<T> {
 
     const updated = await this._model.findByIdAndUpdate(
       { _id },
-      { ...obj },
-      { new: true },
+      { ...obj } as UpdateQuery<T>,
+      { new: true, versionKey: false },
     );
 
     if (!updated) return null;
