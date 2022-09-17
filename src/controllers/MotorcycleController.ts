@@ -12,6 +12,12 @@ class MotorcycleController {
 
     res.status(201).json(created);
   }
+
+  public async read(req: Request, res: Response) {
+    const motorcycles = await this._service.read();
+
+    return res.status(200).json(motorcycles);
+  }
 }
 
 export default MotorcycleController;
