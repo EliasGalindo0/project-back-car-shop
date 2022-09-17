@@ -9,8 +9,12 @@ const motorcycle = new MotorcycleModel();
 const motorcycleService = new MotorcycleService(motorcycle);
 const motorcycleController = new MotorcycleController(motorcycleService);
 
+const path = '/motorcycles/:id';
+
+route.put(path, (req, res) => motorcycleController.update(req, res));
+route.get(path, (req, res) => motorcycleController.readOne(req, res));
+route.delete(path, (req, res) => motorcycleController.delete(req, res));
 route.post('/motorcycles', (req, res) => motorcycleController.create(req, res));
 route.get('/motorcycles', (req, res) => motorcycleController.read(req, res));
-route.get('/motorcycles/:id', (req, res) => motorcycleController.readOne(req, res));
 
 export default route;

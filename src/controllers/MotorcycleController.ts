@@ -25,6 +25,28 @@ class MotorcycleController {
 
     return res.status(200).json(motorcycle);
   }
+
+  public async update(req: Request, res: Response) {
+    const { id } = req.params;
+    const { model, year, color, buyValue, category, engineCapacity } = req.body;
+    const updated = await this._service.update(id, {
+      model,
+      year,
+      color,
+      buyValue,
+      category,
+      engineCapacity,
+    }); 
+
+    return res.status(200).json(updated);
+  }
+
+  public async delete(req: Request, res: Response) {
+    const { id } = req.params;
+    await this._service.delete(id);
+
+    return res.status(204).send();
+  }
 }
 
 export default MotorcycleController;
